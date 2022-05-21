@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnViewProfile = findViewById(R.id.btnViewProfile);
+
+        btnViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileCustomerActivity.class);
+                startActivity(intent);
+            }
+        });
+
         tvNamaWelcome = findViewById(R.id.tvNamaWelcome);
         customerPreferences = new CustomerPreferences(this);
         customer = customerPreferences.getCustomerLogin();

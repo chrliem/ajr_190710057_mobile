@@ -68,7 +68,7 @@ public class CustomerPreferences {
         tglLahirCustomer = sharedPreferences.getString(KEY_TGLLAHIR, null);
         jenisKelaminCustomer = sharedPreferences.getString(KEY_JENISKELAMIN, null);
         noTeleponCustomer = sharedPreferences.getString(KEY_NOTELP, null);
-        noKartuIdentitasCustomer = sharedPreferences.getString(KEY_NOTELP, null);
+        noKartuIdentitasCustomer = sharedPreferences.getString(KEY_NOKARTUIDENTITAS, null);
         kartuIdentitasCustomer = sharedPreferences.getString(KEY_KARTUIDENTITAS, null);
         noSimCustomer = sharedPreferences.getString(KEY_NOSIM, null);
         simCustomer = sharedPreferences.getString(KEY_SIM, null);

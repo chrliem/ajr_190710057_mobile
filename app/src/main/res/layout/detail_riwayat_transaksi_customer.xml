@@ -430,7 +430,8 @@
             <RatingBar
                 android:id="@+id/rt_rating_ajr"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:isIndicator="true"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -446,7 +447,8 @@
             <RatingBar
                 android:id="@+id/rt_rating_driver"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:isIndicator="true"/>
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
             android:layout_marginTop="25dp"
@@ -459,7 +461,8 @@
             android:textColor="@color/white"
             android:text="Close"
             app:cornerRadius="10dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            />
     </LinearLayout>
     </ScrollView>
 

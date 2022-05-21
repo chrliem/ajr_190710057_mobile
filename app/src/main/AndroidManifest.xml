@@ -7,17 +7,18 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_ajr"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ajr_190710057">
+        android:theme="@style/Theme.Ajr_190710057"
+        >
         <activity
             android:name=".RiwayatCustomerActivity"
             android:exported="true" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".ProfileCustomerActivity"
             android:exported="true" />
         <activity
             android:name=".PromoActivity"

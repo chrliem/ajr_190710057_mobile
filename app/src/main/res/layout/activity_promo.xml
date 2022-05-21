@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PromoActivity">
+    tools:context=".PromoActivity"
+    android:background="#8aa4ca">
 
     <RelativeLayout
         android:layout_width="match_parent"
