@@ -111,26 +111,31 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-                        }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai")){
-                            Toast.makeText(LoginActivity.this, pegawaiResponse.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
+                        }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai") && pegawaiResponse.getPegawai().getIdRole()==2 || pegawaiResponse.getPegawai().getIdRole()==3){
+                                Toast.makeText(LoginActivity.this, "Admin/CS Tidak Memiliki Akses Login",
+                                        Toast.LENGTH_SHORT).show();
+                        }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai") && pegawaiResponse.getPegawai().getIdRole()==1){
+                                Toast.makeText(LoginActivity.this, pegawaiResponse.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
 
-                            pegawaiPreferences.setLogin(
-                                    pegawaiResponse.getPegawai().getIdPegawai(),
-                                    pegawaiResponse.getPegawai().getIdRole(),
-                                    pegawaiResponse.getPegawai().getNamaPegawai(),
-                                    pegawaiResponse.getPegawai().getTglLahirPegawai(),
-                                    pegawaiResponse.getPegawai().getJenisKelaminPegawai(),
-                                    pegawaiResponse.getPegawai().getAlamatPegawai(),
-                                    pegawaiResponse.getPegawai().getNoTeleponPegawai(),
-                                    pegawaiResponse.getPegawai().getFotoPegawai(),
-                                    pegawaiResponse.getPegawai().getEmail(),
-                                    pegawaiResponse.getPegawai().getPassword(),
-                                    pegawaiResponse.getAccessToken()
-                            );
-                            Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
-                            startActivity(intent);
-                            finish();
+                                pegawaiPreferences.setLogin(
+                                        pegawaiResponse.getPegawai().getIdPegawai(),
+                                        pegawaiResponse.getPegawai().getIdRole(),
+                                        pegawaiResponse.getPegawai().getNamaPegawai(),
+                                        pegawaiResponse.getPegawai().getTglLahirPegawai(),
+                                        pegawaiResponse.getPegawai().getJenisKelaminPegawai(),
+                                        pegawaiResponse.getPegawai().getAlamatPegawai(),
+                                        pegawaiResponse.getPegawai().getNoTeleponPegawai(),
+                                        pegawaiResponse.getPegawai().getFotoPegawai(),
+                                        pegawaiResponse.getPegawai().getEmail(),
+                                        pegawaiResponse.getPegawai().getPassword(),
+                                        pegawaiResponse.getAccessToken()
+                                );
+                                Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
+                                startActivity(intent);
+                                finish();
+
+
                         }else if(driverResponse.getMessage().equals("Authenticated as Driver")){
                             Toast.makeText(LoginActivity.this, driverResponse.getMessage(),
                                     Toast.LENGTH_SHORT).show();
@@ -155,9 +160,6 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }
 
-//                        Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
-//                        startActivity(intent);
-//                        finish();
 
                     }
                 }, new Response.ErrorListener() {
@@ -187,13 +189,6 @@ public class LoginActivity extends AppCompatActivity {
                 String requestBody = gson.toJson(user);
                 return requestBody.getBytes(StandardCharsets.UTF_8);
             }
-//            @Override
-//            protected Map<String, String> getParams()throws AuthFailureError{
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("email", email);
-//                params.put("password", password);
-//                return params;
-//            }
 
             @Override
             public String getBodyContentType(){

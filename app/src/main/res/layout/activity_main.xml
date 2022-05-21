@@ -41,6 +41,7 @@
                         android:layout_marginTop="10dp"
                         android:translationX="140dp"
                         android:text="logout"
+                        android:id="@+id/btnLogoutCustomer"
                         android:backgroundTint="@color/black"/>
                 </LinearLayout>
 

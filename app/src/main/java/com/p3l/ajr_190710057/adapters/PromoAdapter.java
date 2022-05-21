@@ -20,11 +20,16 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
     private Context context;
     CustomerPreferences customerPreferences;
 
+    public PromoAdapter(List<Promo> promoList, Context context) {
+        this.promoList = promoList;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public PromoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_mobil, parent, false);
+        View view = inflater.inflate(R.layout.item_promo, parent, false);
         return new PromoAdapter.ViewHolder(view);
     }
 
@@ -34,7 +39,8 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
 
         holder.tvKodePromo.setText(promo.getKodePromo());
         holder.tvJenisPromo.setText(promo.getJenisPromo());
-        holder.tvPotonganPromo.setText((int) promo.getPotonganPromo());
+        String potonganPromo =String.format("%.1f",promo.getPotonganPromo()*100);
+        holder.tvPotonganPromo.setText(potonganPromo+'%');
         holder.tvKeterangan.setText(promo.getKeterangan());
     }
 

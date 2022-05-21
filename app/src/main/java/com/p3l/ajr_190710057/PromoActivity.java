@@ -6,16 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,11 +22,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.p3l.ajr_190710057.adapters.MobilAdapter;
+import com.p3l.ajr_190710057.adapters.PromoAdapter;
 import com.p3l.ajr_190710057.api.MobilApi;
+import com.p3l.ajr_190710057.api.PromoApi;
 import com.p3l.ajr_190710057.models.Customer;
-import com.p3l.ajr_190710057.models.Mobil;
 import com.p3l.ajr_190710057.preferences.CustomerPreferences;
 import com.p3l.ajr_190710057.responses.MobilResponse;
+import com.p3l.ajr_190710057.responses.PromoResponse;
 
 import org.json.JSONObject;
 
@@ -39,24 +37,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MobilActivity extends AppCompatActivity {
+public class PromoActivity extends AppCompatActivity {
     private CustomerPreferences customerPreferences;
     private Customer customer;
-    private MobilAdapter adapter;
+    private PromoAdapter adapter;
     private RequestQueue queue;
-    private RecyclerView rvMobil;
+    private RecyclerView rvPromo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mobil);
+        setContentView(R.layout.activity_promo);
 
-        ImageButton btnBack = findViewById(R.id.btnBackFromMobil);
+        ImageButton btnBack = findViewById(R.id.btnBackFromPromo);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MobilActivity.this, MainActivity.class);
+                Intent intent = new Intent(PromoActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -64,29 +62,29 @@ public class MobilActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         customerPreferences = new CustomerPreferences(this);
         customer = customerPreferences.getCustomerLogin();
-        rvMobil = findViewById(R.id.rv_mobil);
-        adapter = new MobilAdapter(new ArrayList<>(), this);
-        rvMobil.setLayoutManager(new LinearLayoutManager(MobilActivity.this,
-                LinearLayoutManager.VERTICAL, false));
-        rvMobil.setAdapter(adapter);
 
-        getAllMobil();
+        rvPromo = findViewById(R.id.rv_promo);
+        adapter = new PromoAdapter(new ArrayList<>(), this);
 
+        rvPromo.setLayoutManager(new LinearLayoutManager(PromoActivity.this));
+
+
+
+        getAllPromo();
     }
 
-    private void getAllMobil(){
-        StringRequest stringRequest = new StringRequest(GET, MobilApi.GET_ALL_URL, new Response.Listener<String>() {
+    private void getAllPromo(){
+        StringRequest stringRequest = new StringRequest(GET, PromoApi.GET_ALL_URL,
+                new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                MobilResponse mobilResponse = gson.fromJson(response, MobilResponse.class);
+                PromoResponse promoResponse = gson.fromJson(response, PromoResponse.class);
 
-                adapter.setMobilList(mobilResponse.getMobilList());
+                adapter.setPromoList(promoResponse.getPromoList());
+                rvPromo.setAdapter(adapter);
                 Log.d("API RESPONSE", response);
-                Log.d("Cek isi list",String.valueOf(adapter.getItemCount()));
-                rvMobil.setAdapter(adapter);
-
-                Toast.makeText(MobilActivity.this, mobilResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PromoActivity.this, promoResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -95,10 +93,10 @@ public class MobilActivity extends AppCompatActivity {
                     String responseBody = new String(error.networkResponse.data,
                             StandardCharsets.UTF_8);
                     JSONObject errors = new JSONObject(responseBody);
-                    Toast.makeText(MobilActivity.this,
+                    Toast.makeText(PromoActivity.this,
                             errors.getString("message"), Toast.LENGTH_SHORT).show();
                 }catch (Exception e) {
-                    Toast.makeText(MobilActivity.this, e.getMessage(),
+                    Toast.makeText(PromoActivity.this, e.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 }
 
