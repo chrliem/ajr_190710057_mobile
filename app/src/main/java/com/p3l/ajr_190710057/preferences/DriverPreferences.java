@@ -28,7 +28,7 @@ public class DriverPreferences {
     public DriverPreferences(Context context){
         this.context = context;
 
-        sharedPreferences = context.getSharedPreferences("userPreferences",Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("driverPreferences",Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 
@@ -54,7 +54,7 @@ public class DriverPreferences {
 
         editor.commit();
     }
-    public Driver getPegawaiLogin(){
+    public Driver getDriverLogin(){
         String idDriver, namaDriver, alamatDriver,
                 tglLahirDriver, jenisKelaminDriver,noTeleponDriver,
                 email, password, fotoDriver, accessToken;

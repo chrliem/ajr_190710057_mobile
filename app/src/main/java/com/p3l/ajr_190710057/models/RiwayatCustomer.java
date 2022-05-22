@@ -53,8 +53,15 @@ public class RiwayatCustomer {
     private String kodePromo;
     @SerializedName("metode_pembayaran")
     private String metodePembayaran;
+    @SerializedName("id_driver")
+    private String idDriver;
+    @SerializedName("no_plat")
+    private String noPlat;
+    @SerializedName("bukti_pembayaran")
+    private String buktiPembayaran;
 
-    public RiwayatCustomer(String noTransaksi, String tglTransaksi, String tglMulaiSewa, String tglSelesaiSewa, String tglPengembalian, Integer tipeSewa, String namaMobil, String namaDriver, float tarifMobilHarian, float tarifDriverHarian, Integer durasiSewa, String fotoMobil, String fotoDriver, String namaPegawai, float totalBiayaMobil, float totalBiayaDriver, float totalBiayaEkstensi, float totalPembayaran, String statusPembayaran, String statusTransaksi, Integer ratingAJR, Integer ratingDriver, float potonganPromo, String kodePromo, String metodePembayaran) {
+
+    public RiwayatCustomer(String noTransaksi, String tglTransaksi, String tglMulaiSewa, String tglSelesaiSewa, String tglPengembalian, Integer tipeSewa, String namaMobil, String namaDriver, float tarifMobilHarian, float tarifDriverHarian, Integer durasiSewa, String fotoMobil, String fotoDriver, String namaPegawai, float totalBiayaMobil, float totalBiayaDriver, float totalBiayaEkstensi, float totalPembayaran, String statusPembayaran, String statusTransaksi, Integer ratingAJR, Integer ratingDriver, float potonganPromo, String kodePromo, String metodePembayaran, String idDriver, String noPlat, String buktiPembayaran) {
         this.noTransaksi = noTransaksi;
         this.tglTransaksi = tglTransaksi;
         this.tglMulaiSewa = tglMulaiSewa;
@@ -80,6 +87,17 @@ public class RiwayatCustomer {
         this.potonganPromo = potonganPromo;
         this.kodePromo = kodePromo;
         this.metodePembayaran = metodePembayaran;
+        this.idDriver = idDriver;
+        this.noPlat = noPlat;
+        this.buktiPembayaran = buktiPembayaran;
+    }
+
+    public String getBuktiPembayaran() {
+        return buktiPembayaran;
+    }
+
+    public void setBuktiPembayaran(String buktiPembayaran) {
+        this.buktiPembayaran = buktiPembayaran;
     }
 
     public String getMetodePembayaran() {
@@ -280,5 +298,21 @@ public class RiwayatCustomer {
 
     public void setKodePromo(String kodePromo) {
         this.kodePromo = kodePromo;
+    }
+
+    public String getIdDriver() {
+        return idDriver;
+    }
+
+    public void setIdDriver(String idDriver) {
+        this.idDriver = idDriver;
+    }
+
+    public String getNoPlat() {
+        return noPlat;
+    }
+
+    public void setNoPlat(String noPlat) {
+        this.noPlat = noPlat;
     }
 }

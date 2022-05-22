@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-                        }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai") && pegawaiResponse.getPegawai().getIdRole()==2 || pegawaiResponse.getPegawai().getIdRole()==3){
+                        }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai") && (pegawaiResponse.getPegawai().getIdRole()==2 || pegawaiResponse.getPegawai().getIdRole()==3)){
                                 Toast.makeText(LoginActivity.this, "Admin/CS Tidak Memiliki Akses Login",
                                         Toast.LENGTH_SHORT).show();
                         }else if(pegawaiResponse.getMessage().equals("Authenticated as Pegawai") && pegawaiResponse.getPegawai().getIdRole()==1){
@@ -204,7 +204,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }else if(pegawaiPreferences.checkLogin()){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity2.class));
+            finish();
+        }else if(driverPreferences.checkLogin()){
+            startActivity(new Intent(LoginActivity.this, MainActivity3.class));
             finish();
         }
     }

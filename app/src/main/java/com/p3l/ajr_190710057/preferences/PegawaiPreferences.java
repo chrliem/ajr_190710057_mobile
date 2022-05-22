@@ -26,7 +26,7 @@ public class PegawaiPreferences {
     public PegawaiPreferences(Context context){
         this.context = context;
 
-        sharedPreferences = context.getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("pegawaiPreferences", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 

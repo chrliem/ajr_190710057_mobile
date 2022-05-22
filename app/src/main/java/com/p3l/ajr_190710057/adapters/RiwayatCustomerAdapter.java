@@ -63,10 +63,10 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 TextView tvNoTransaksiDetail, tvTipeSewaDetail, tvNamaMobil, tvNamaDriver, tvTarifMobilHarian, tvtarifDriverHarian,
                         tvTglTransaksiDetail, tvTglMulaiSewa, tvTglSelesaiSewa, tvTglPengembalian, tvNamaPegawai, tvKodePromo, tvPotonganPromo,
                         tvMetodePembayaran, tvTotalBiayaMobil, tvTotalBiayaDriver, tvTotalBiayaEkstensi, tvTotalPembayaran, tvStatusPembayaran, tvStatusTransaksi,tvDurasiSewa,
-                        txtRatingAJR, txtRatingDriver, txtRating;
+                        txtRatingAJR, txtRatingDriver, txtRating, tvIdDriver, tvNoPlat;
                 RatingBar rtRatingAJR, rtRatingDriver;
                 MaterialButton btnCloseDetail;
-                ImageView ivFotoMobil, ivFotoDriver;
+                ImageView ivFotoMobil, ivFotoDriver, ivBuktiPembayaran;
 
                 tvNoTransaksiDetail = newLayout.findViewById(R.id.tv_no_transaksi_detail);
                 tvTipeSewaDetail = newLayout.findViewById(R.id.tv_tipe_sewa_detail);
@@ -97,7 +97,9 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 txtRatingAJR = newLayout.findViewById(R.id.txt_rating_ajr);
                 txtRatingDriver = newLayout.findViewById(R.id.txt_rating_driver);
                 txtRating = newLayout.findViewById(R.id.txt_rating);
-
+                tvNoPlat = newLayout.findViewById(R.id.tv_no_plat_mobil);
+                tvIdDriver = newLayout.findViewById(R.id.tv_no_driver);
+                ivBuktiPembayaran = newLayout.findViewById(R.id.iv_bukti_pembayaran);
 
                 tvNoTransaksiDetail.setText(riwayatCustomer.getNoTransaksi());
                 if(riwayatCustomer.getNamaDriver()==null){
@@ -108,6 +110,7 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                             .apply(new RequestOptions().override(600, 200))
                             .into(ivFotoMobil);
                     tvNamaMobil.setText(riwayatCustomer.getNamaMobil());
+                    tvNoPlat.setText(riwayatCustomer.getNoPlat());
                     tvTarifMobilHarian.setText("Rp "+String.valueOf(riwayatCustomer.getTarifMobilHarian())+"/Hari");
                     if(riwayatCustomer.getRatingAJR()==null){
                         rtRatingAJR.setVisibility(View.GONE);
@@ -122,7 +125,7 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                     tvNamaDriver.setVisibility(View.GONE);
                     tvtarifDriverHarian.setVisibility(View.GONE);
                     tvTotalBiayaDriver.setVisibility(View.GONE);
-
+                    tvIdDriver.setVisibility(View.GONE);
                     rtRatingDriver.setVisibility(View.GONE);
                     txtRatingDriver.setVisibility(View.GONE);
                 }else{
@@ -135,12 +138,14 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                     tvNamaMobil.setText(riwayatCustomer.getNamaMobil());
                     tvTarifMobilHarian.setText("Rp "+String.valueOf(riwayatCustomer.getTarifMobilHarian())+"/Hari");
                     tvTotalBiayaMobil.setText("Rp"+String.valueOf(riwayatCustomer.getTotalBiayaMobil()));
+                    tvNoPlat.setText(riwayatCustomer.getNoPlat());
                     String urlImage1 = "http://192.168.100.7:8000/storage/foto_driver/"+riwayatCustomer.getFotoDriver();
                     Glide.with(context)
                             .load(urlImage1)
                             .apply(new RequestOptions().override(600, 200))
                             .into(ivFotoDriver);
                     tvNamaDriver.setText(riwayatCustomer.getNamaDriver());
+                    tvIdDriver.setText(riwayatCustomer.getIdDriver());
                     tvtarifDriverHarian.setText("Rp "+String.valueOf(riwayatCustomer.getTarifDriverHarian())+"/Hari");
                     tvTotalBiayaDriver.setText("Rp"+String.valueOf(riwayatCustomer.getTotalBiayaDriver()));
                     if(riwayatCustomer.getRatingAJR()==null && riwayatCustomer.getRatingDriver()==null){
@@ -177,6 +182,15 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 tvDurasiSewa.setText(String.valueOf(riwayatCustomer.getDurasiSewa())+" Hari");
                 tvStatusPembayaran.setText(riwayatCustomer.getStatusPembayaran());
                 tvStatusTransaksi.setText(riwayatCustomer.getStatusTransaksi());
+                if(riwayatCustomer.getBuktiPembayaran()==null){
+                    ivBuktiPembayaran.setVisibility(View.GONE);
+                }else{
+                    String urlImage1 = "http://192.168.100.7:8000/storage/bukti_pembayaran/"+riwayatCustomer.getBuktiPembayaran();
+                    Glide.with(context)
+                            .load(urlImage1)
+                            .apply(new RequestOptions().override(1280, 720))
+                            .into(ivBuktiPembayaran);
+                }
 
                 builder.setView(newLayout);
                 AlertDialog popup = builder.create();

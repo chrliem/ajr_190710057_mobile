@@ -29,7 +29,7 @@ public class CustomerPreferences {
     public CustomerPreferences(Context context){
         this.context = context;
 
-        sharedPreferences = context.getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("customerPreferences", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 
