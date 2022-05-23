@@ -197,7 +197,7 @@ public class ProfileCustomerActivity extends AppCompatActivity {
                                 customerPreferences.getCustomerLogin().getAccess_token()
                         );
                         StringRequest stringRequest = new StringRequest(POST,
-                                CustomerApi.UPDATE_URL+customerPreferences.getCustomerLogin().getIdCustomer(), new Response.Listener<String>() {
+                                CustomerApi.UPDATE_URL+customer.getIdCustomer(), new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Gson gson = new Gson();
@@ -205,7 +205,7 @@ public class ProfileCustomerActivity extends AppCompatActivity {
                                 CustomerResponse customerResponse = gson.fromJson(response, CustomerResponse.class);
                                 Log.d("API RESPONSE", response);
                                 customerPreferences.setLogin(
-                                        customerPreferences.getCustomerLogin().getIdCustomer(),
+                                        customer.getIdCustomer(),
                                         customerResponse.getCustomer().getNamaCustomer(),
                                         customerResponse.getCustomer().getAlamatCustomer(),
                                         customerResponse.getCustomer().getTglLahirCustomer(),
@@ -218,13 +218,13 @@ public class ProfileCustomerActivity extends AppCompatActivity {
                                         customerResponse.getCustomer().getEmail(),
                                         customerResponse.getCustomer().getPassword(),
                                         customerResponse.getCustomer().getTipeSewaCustomer(),
-                                        customerPreferences.getCustomerLogin().getAccess_token()
+                                        customer.getAccess_token()
                                 );
                                 Toast.makeText(ProfileCustomerActivity.this, customerResponse.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                                 popup.dismiss();
-                                ProfileCustomerActivity.this.notifyAll();
-                                Intent returnIntent = new Intent();
+                                Intent returnIntent = new Intent(ProfileCustomerActivity.this, ProfileCustomerActivity.class);
+                                startActivity(returnIntent);
                             }
                         }, new Response.ErrorListener() {
                             @Override

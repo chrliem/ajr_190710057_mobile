@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Atma Jogja Rental</string>
+    <string-array name="status_ketersediaan_array">
+        <item>Tersedia</item>
+        <item>Tidak Tersedia</item>
+    </string-array>
 </resources>
