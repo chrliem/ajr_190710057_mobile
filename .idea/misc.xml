@@ -6,8 +6,8 @@
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.2518518518518518" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_main2.xml" value="0.1279128672745694" />
-        <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_main3.xml" value="0.29010416666666666" />
+        <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_main2.xml" value="0.33" />
+        <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_main3.xml" value="0.1" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_mobil.xml" value="0.22" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_profile.xml" value="0.3625" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/activity_profile_customer.xml" value="0.33" />
@@ -26,6 +26,7 @@
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/item_riwayat_customer.xml" value="0.1" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/layout/item_riwayat_driver.xml" value="0.26129032258064516" />
         <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="..\:/Kuliah/Semester6/P3L/app_ajr_190710057/app/src/main/res/xml/provider_paths.xml" value="0.3625" />
       </map>
     </option>
   </component>
