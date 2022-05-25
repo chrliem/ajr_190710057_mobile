@@ -235,87 +235,109 @@ public class ProfileDriverActivity extends AppCompatActivity {
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Driver newDriver = new Driver(
-                                driver.getIdDriver(),
-                                editNama.getText().toString(),
-                                editAlamat.getText().toString(),
-                                editTglLahir.getText().toString(),
-                                editJenisKelamin.getText().toString(),
-                                editNoTelepon.getText().toString(),
-                                driver.getEmail(),
-                                driver.getPassword(),
-                                driver.getFotoDriver(),
-                                driver.getTarifDriverHarian(),
-                                driver.getStatusKetersediaan(),
-                                driver.getKemampuanBahasaAsing(),
-                                driver.getAccessToken()
-                        );
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileDriverActivity.this);
+                        View newLayout  = LayoutInflater.from(builder.getContext())
+                                .inflate(R.layout.alert_konfirmasi_edit_driver, null);
+                        MaterialButton btnKonfirmasi, btnBatal;
+                        builder.setView(newLayout);
+                        AlertDialog popup = builder.create();
+                        popup.show();
+                        btnKonfirmasi = newLayout.findViewById(R.id.btnKonfirmasiEditDriver);
+                        btnBatal = newLayout.findViewById(R.id.btnBatalEditDriver);
 
-                        StringRequest stringRequest = new StringRequest(POST,
-                                DriverApi.UPDATE_URL+driver.getIdDriver()+"/update", new Response.Listener<String>() {
+                        btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onResponse(String response) {
-                                Gson gson = new Gson();
-
-                                DriverResponse driverResponse = gson.fromJson(response, DriverResponse.class);
-                                Log.d("API RESPONSE", response);
-                                driverPreferences.setLogin(
+                            public void onClick(View view) {
+                                Driver newDriver = new Driver(
                                         driver.getIdDriver(),
-                                        driverResponse.getDriver().getNamaDriver(),
-                                        driverResponse.getDriver().getAlamatDriver(),
-                                        driverResponse.getDriver().getTglLahirDriver(),
-                                        driverResponse.getDriver().getJenisKelaminDriver(),
-                                        driverResponse.getDriver().getNoTeleponDriver(),
-                                        driverResponse.getDriver().getEmail(),
-                                        driverResponse.getDriver().getPassword(),
-                                        driverResponse.getDriver().getFotoDriver(),
-                                        driverResponse.getDriver().getTarifDriverHarian(),
-                                        driverResponse.getDriver().getStatusKetersediaan(),
-                                        driverResponse.getDriver().getKemampuanBahasaAsing(),
+                                        editNama.getText().toString(),
+                                        editAlamat.getText().toString(),
+                                        editTglLahir.getText().toString(),
+                                        editJenisKelamin.getText().toString(),
+                                        editNoTelepon.getText().toString(),
+                                        driver.getEmail(),
+                                        driver.getPassword(),
+                                        driver.getFotoDriver(),
+                                        driver.getTarifDriverHarian(),
+                                        driver.getStatusKetersediaan(),
+                                        driver.getKemampuanBahasaAsing(),
                                         driver.getAccessToken()
                                 );
-                                Toast.makeText(ProfileDriverActivity.this, driverResponse.getMessage(),
-                                        Toast.LENGTH_SHORT).show();
+
+                                StringRequest stringRequest = new StringRequest(POST,
+                                        DriverApi.UPDATE_URL+driver.getIdDriver()+"/update", new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Gson gson = new Gson();
+
+                                        DriverResponse driverResponse = gson.fromJson(response, DriverResponse.class);
+                                        Log.d("API RESPONSE", response);
+                                        driverPreferences.setLogin(
+                                                driver.getIdDriver(),
+                                                driverResponse.getDriver().getNamaDriver(),
+                                                driverResponse.getDriver().getAlamatDriver(),
+                                                driverResponse.getDriver().getTglLahirDriver(),
+                                                driverResponse.getDriver().getJenisKelaminDriver(),
+                                                driverResponse.getDriver().getNoTeleponDriver(),
+                                                driverResponse.getDriver().getEmail(),
+                                                driverResponse.getDriver().getPassword(),
+                                                driverResponse.getDriver().getFotoDriver(),
+                                                driverResponse.getDriver().getTarifDriverHarian(),
+                                                driverResponse.getDriver().getStatusKetersediaan(),
+                                                driverResponse.getDriver().getKemampuanBahasaAsing(),
+                                                driver.getAccessToken()
+                                        );
+                                        Toast.makeText(ProfileDriverActivity.this, driverResponse.getMessage(),
+                                                Toast.LENGTH_SHORT).show();
+                                        popup.dismiss();
+                                        Intent returnIntent = new Intent(ProfileDriverActivity.this, ProfileDriverActivity.class);
+                                        startActivity(returnIntent);
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        try {
+                                            String responseBody = new String(error.networkResponse.data,
+                                                    StandardCharsets.UTF_8);
+                                            JSONObject errors = new JSONObject(responseBody);
+
+                                            Toast.makeText(ProfileDriverActivity.this, errors.getString("message"),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e) {
+                                            Toast.makeText(ProfileDriverActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }) {
+                                    @Override
+                                    public Map<String, String> getHeaders() throws AuthFailureError {
+                                        HashMap<String, String> headers = new HashMap<String, String>();
+                                        headers.put("Accept", "application/json");
+                                        headers.put("Authorization", "Bearer "+
+                                                driverPreferences.getDriverLogin().getAccessToken());
+                                        return headers;
+                                    }
+                                    @Override
+                                    public byte[] getBody() throws AuthFailureError {
+                                        Gson gson = new Gson();
+                                        String requestBody = gson.toJson(newDriver);
+                                        return requestBody.getBytes(StandardCharsets.UTF_8);
+                                    }
+                                    @Override
+                                    public String getBodyContentType() {
+                                        return "application/json";
+                                    }
+                                };
+                                VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
+                            }
+                        });
+
+                        btnBatal.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
                                 popup.dismiss();
-                                Intent returnIntent = new Intent(ProfileDriverActivity.this, ProfileDriverActivity.class);
-                                startActivity(returnIntent);
                             }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                try {
-                                    String responseBody = new String(error.networkResponse.data,
-                                            StandardCharsets.UTF_8);
-                                    JSONObject errors = new JSONObject(responseBody);
-
-                                    Toast.makeText(ProfileDriverActivity.this, errors.getString("message"),
-                                            Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                    Toast.makeText(ProfileDriverActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }) {
-                            @Override
-                            public Map<String, String> getHeaders() throws AuthFailureError {
-                                HashMap<String, String> headers = new HashMap<String, String>();
-                                headers.put("Accept", "application/json");
-                                headers.put("Authorization", "Bearer "+
-                                        driverPreferences.getDriverLogin().getAccessToken());
-                                return headers;
-                            }
-                            @Override
-                            public byte[] getBody() throws AuthFailureError {
-                                Gson gson = new Gson();
-                                String requestBody = gson.toJson(newDriver);
-                                return requestBody.getBytes(StandardCharsets.UTF_8);
-                            }
-                            @Override
-                            public String getBodyContentType() {
-                                return "application/json";
-                            }
-                        };
-                        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
-
+                        });
                     }
                 });
             }

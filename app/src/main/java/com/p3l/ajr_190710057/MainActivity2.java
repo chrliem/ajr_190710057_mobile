@@ -17,7 +17,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -47,6 +49,7 @@ import com.p3l.ajr_190710057.models.LaporanDetailPendapatanTransaksi;
 import com.p3l.ajr_190710057.models.LaporanDriverTransaksiTerbanyak;
 import com.p3l.ajr_190710057.models.LaporanPenyewaanMobil;
 import com.p3l.ajr_190710057.models.LaporanPerformaDriver;
+import com.p3l.ajr_190710057.models.Pegawai;
 import com.p3l.ajr_190710057.preferences.PegawaiPreferences;
 import com.p3l.ajr_190710057.responses.LaporanCustomerTransaksiTerbanyakResponse;
 import com.p3l.ajr_190710057.responses.LaporanDetailPendapatanTransaksiResponse;
@@ -75,6 +78,9 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
     private CardView btnLaporanPenyewaanMobil, btnLaporanDetailPendapatanTransaksi, btnLaporanDriverTerbanyak, btnLaporanPerformaDriver, btnLaporanCustomerTerbanyak;
     private PegawaiPreferences pegawaiPreferences;
     private RequestQueue queue;
+    private TextView tvNamaWelcome;
+    private Button btnLogout;
+    private Pegawai pegawai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +95,24 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
         btnLaporanDriverTerbanyak = findViewById(R.id.btnLaporanDriverTransaksiTerbanyak);
         btnLaporanPerformaDriver = findViewById(R.id.btnLaporanPerformaDriver);
         btnLaporanCustomerTerbanyak = findViewById(R.id.btnLaporanCustomerTransaksiTerbanyak);
+        tvNamaWelcome = findViewById(R.id.tvNamaWelcomeManager);
+        btnLogout = findViewById(R.id.btnLogoutManager);
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pegawaiPreferences.logout();
+                if(!pegawaiPreferences.checkLogin()){
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
+                }
+            }
+        });
+
+        pegawaiPreferences = new PegawaiPreferences(this);
+        pegawai = pegawaiPreferences.getPegawaiLogin();
+        Log.d("Nama Pegawai",pegawai.getNamaPegawai());
+        tvNamaWelcome.setText(pegawai.getNamaPegawai());
 
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(MainActivity2.this, R.array.month_array, android.R.layout.simple_spinner_item);

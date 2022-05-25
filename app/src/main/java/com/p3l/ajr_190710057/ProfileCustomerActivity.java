@@ -180,87 +180,107 @@ public class ProfileCustomerActivity extends AppCompatActivity {
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Customer customer1 = new Customer(
-                                customerPreferences.getCustomerLogin().getIdCustomer(),
-                                editNama.getText().toString(),
-                                editAlamat.getText().toString(),
-                                editTglLahir.getText().toString(),
-                                editJenisKelamin.getText().toString(),
-                                editNoTelepon.getText().toString(),
-                                customerPreferences.getCustomerLogin().getNoKartuIdentitasCustomer(),
-                                customerPreferences.getCustomerLogin().getKartuIdentitasCustomer(),
-                                customerPreferences.getCustomerLogin().getNoSimCustomer(),
-                                customerPreferences.getCustomerLogin().getSimCustomer(),
-                                customerPreferences.getCustomerLogin().getTipeSewaCustomer(),
-                                customerPreferences.getCustomerLogin().getEmail(),
-                                customerPreferences.getCustomerLogin().getPassword(),
-                                customerPreferences.getCustomerLogin().getAccess_token()
-                        );
-                        StringRequest stringRequest = new StringRequest(POST,
-                                CustomerApi.UPDATE_URL+customer.getIdCustomer(), new Response.Listener<String>() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileCustomerActivity.this);
+                        View newLayout  = LayoutInflater.from(builder.getContext())
+                                .inflate(R.layout.alert_konfirmasi_edit_customer, null);
+                        MaterialButton btnKonfirmasi, btnBatal;
+                        builder.setView(newLayout);
+                        AlertDialog popup = builder.create();
+                        popup.show();
+                        btnKonfirmasi = newLayout.findViewById(R.id.btnKonfirmasiEditCustomer);
+                        btnBatal = newLayout.findViewById(R.id.btnBatalEditCustomer);
+                        btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onResponse(String response) {
-                                Gson gson = new Gson();
-
-                                CustomerResponse customerResponse = gson.fromJson(response, CustomerResponse.class);
-                                Log.d("API RESPONSE", response);
-                                customerPreferences.setLogin(
-                                        customer.getIdCustomer(),
-                                        customerResponse.getCustomer().getNamaCustomer(),
-                                        customerResponse.getCustomer().getAlamatCustomer(),
-                                        customerResponse.getCustomer().getTglLahirCustomer(),
-                                        customerResponse.getCustomer().getJenisKelaminCustomer(),
-                                        customerResponse.getCustomer().getNoTeleponCustomer(),
-                                        customerResponse.getCustomer().getNoKartuIdentitasCustomer(),
-                                        customerResponse.getCustomer().getKartuIdentitasCustomer(),
-                                        customerResponse.getCustomer().getNoSimCustomer(),
-                                        customerResponse.getCustomer().getSimCustomer(),
-                                        customerResponse.getCustomer().getEmail(),
-                                        customerResponse.getCustomer().getPassword(),
-                                        customerResponse.getCustomer().getTipeSewaCustomer(),
-                                        customer.getAccess_token()
+                            public void onClick(View view) {
+                                Customer customer1 = new Customer(
+                                        customerPreferences.getCustomerLogin().getIdCustomer(),
+                                        editNama.getText().toString(),
+                                        editAlamat.getText().toString(),
+                                        editTglLahir.getText().toString(),
+                                        editJenisKelamin.getText().toString(),
+                                        editNoTelepon.getText().toString(),
+                                        customerPreferences.getCustomerLogin().getNoKartuIdentitasCustomer(),
+                                        customerPreferences.getCustomerLogin().getKartuIdentitasCustomer(),
+                                        customerPreferences.getCustomerLogin().getNoSimCustomer(),
+                                        customerPreferences.getCustomerLogin().getSimCustomer(),
+                                        customerPreferences.getCustomerLogin().getTipeSewaCustomer(),
+                                        customerPreferences.getCustomerLogin().getEmail(),
+                                        customerPreferences.getCustomerLogin().getPassword(),
+                                        customerPreferences.getCustomerLogin().getAccess_token()
                                 );
-                                Toast.makeText(ProfileCustomerActivity.this, customerResponse.getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                                popup.dismiss();
-                                Intent returnIntent = new Intent(ProfileCustomerActivity.this, ProfileCustomerActivity.class);
-                                startActivity(returnIntent);
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                try {
-                                    String responseBody = new String(error.networkResponse.data,
-                                            StandardCharsets.UTF_8);
-                                    JSONObject errors = new JSONObject(responseBody);
+                                StringRequest stringRequest = new StringRequest(POST,
+                                        CustomerApi.UPDATE_URL+customer.getIdCustomer(), new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Gson gson = new Gson();
 
-                                    Toast.makeText(ProfileCustomerActivity.this, errors.getString("message"),
-                                            Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                    Toast.makeText(ProfileCustomerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
+                                        CustomerResponse customerResponse = gson.fromJson(response, CustomerResponse.class);
+                                        Log.d("API RESPONSE", response);
+                                        customerPreferences.setLogin(
+                                                customer.getIdCustomer(),
+                                                customerResponse.getCustomer().getNamaCustomer(),
+                                                customerResponse.getCustomer().getAlamatCustomer(),
+                                                customerResponse.getCustomer().getTglLahirCustomer(),
+                                                customerResponse.getCustomer().getJenisKelaminCustomer(),
+                                                customerResponse.getCustomer().getNoTeleponCustomer(),
+                                                customerResponse.getCustomer().getNoKartuIdentitasCustomer(),
+                                                customerResponse.getCustomer().getKartuIdentitasCustomer(),
+                                                customerResponse.getCustomer().getNoSimCustomer(),
+                                                customerResponse.getCustomer().getSimCustomer(),
+                                                customerResponse.getCustomer().getEmail(),
+                                                customerResponse.getCustomer().getPassword(),
+                                                customerResponse.getCustomer().getTipeSewaCustomer(),
+                                                customer.getAccess_token()
+                                        );
+                                        Toast.makeText(ProfileCustomerActivity.this, customerResponse.getMessage(),
+                                                Toast.LENGTH_SHORT).show();
+                                        popup.dismiss();
+                                        Intent returnIntent = new Intent(ProfileCustomerActivity.this, ProfileCustomerActivity.class);
+                                        startActivity(returnIntent);
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        try {
+                                            String responseBody = new String(error.networkResponse.data,
+                                                    StandardCharsets.UTF_8);
+                                            JSONObject errors = new JSONObject(responseBody);
+
+                                            Toast.makeText(ProfileCustomerActivity.this, errors.getString("message"),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e) {
+                                            Toast.makeText(ProfileCustomerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }) {
+                                    @Override
+                                    public Map<String, String> getHeaders() throws AuthFailureError {
+                                        HashMap<String, String> headers = new HashMap<String, String>();
+                                        headers.put("Accept", "application/json");
+                                        headers.put("Authorization", "Bearer "+
+                                                customerPreferences.getCustomerLogin().getAccess_token());
+                                        return headers;
+                                    }
+                                    @Override
+                                    public byte[] getBody() throws AuthFailureError {
+                                        Gson gson = new Gson();
+                                        String requestBody = gson.toJson(customer1);
+                                        return requestBody.getBytes(StandardCharsets.UTF_8);
+                                    }
+                                    @Override
+                                    public String getBodyContentType() {
+                                        return "application/json";
+                                    }
+                                };
+                                VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
                             }
-                        }) {
+                        });
+                        btnBatal.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public Map<String, String> getHeaders() throws AuthFailureError {
-                                HashMap<String, String> headers = new HashMap<String, String>();
-                                headers.put("Accept", "application/json");
-                                headers.put("Authorization", "Bearer "+
-                                        customerPreferences.getCustomerLogin().getAccess_token());
-                                return headers;
+                            public void onClick(View view) {
+                                popup.dismiss();
                             }
-                            @Override
-                            public byte[] getBody() throws AuthFailureError {
-                                Gson gson = new Gson();
-                                String requestBody = gson.toJson(customer1);
-                                return requestBody.getBytes(StandardCharsets.UTF_8);
-                            }
-                            @Override
-                            public String getBodyContentType() {
-                                return "application/json";
-                            }
-                        };
-                        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+                        });
 
                     }
                 });
