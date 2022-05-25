@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Atma Jogja Rental</string>
     <string-array name="month_array">
+        <item></item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -15,6 +16,7 @@
         <item>12</item>
     </string-array>
     <string-array name="year_array">
+        <item></item>
         <item>2022</item>
         <item>2023</item>
         <item>2024</item>
