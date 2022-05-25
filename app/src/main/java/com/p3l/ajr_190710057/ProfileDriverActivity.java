@@ -550,4 +550,10 @@ public class ProfileDriverActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent(ProfileDriverActivity.this, MainActivity.class);
+        startActivity(returnIntent);
+    }
 }

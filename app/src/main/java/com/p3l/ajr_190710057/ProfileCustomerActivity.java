@@ -293,4 +293,10 @@ public class ProfileCustomerActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent(ProfileCustomerActivity.this, MainActivity.class);
+        startActivity(returnIntent);
+    }
+
 }
