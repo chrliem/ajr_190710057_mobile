@@ -187,7 +187,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                             }
                             Log.d("PATH", String.valueOf(folder));
                             Date currentTime = Calendar.getInstance().getTime();
-                            String pdfName = "LaporanPenyewaanMobil_"+finalTemp+"_"+finalYearSelected+".pdf";
+                            String pdfName = "LaporanPenyewaanMobil_"+finalTemp+"_"+finalYearSelected+currentTime.getTime()+".pdf";
                             File pdfFile = new File(folder.getAbsolutePath(), pdfName);
 
                             OutputStream outputStream = null;
@@ -369,7 +369,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                             }
                             Log.d("PATH", String.valueOf(folder));
                             Date currentTime = Calendar.getInstance().getTime();
-                            String pdfName = "LaporanDetailPendapatanTransaksi_"+finalTemp+"_"+finalYearSelected+".pdf";
+                            String pdfName = "LaporanDetailPendapatanTransaksi_"+finalTemp+"_"+finalYearSelected+currentTime.getTime()+".pdf";
                             File pdfFile = new File(folder.getAbsolutePath(), pdfName);
 
                             OutputStream outputStream = null;
@@ -554,7 +554,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                             }
                             Log.d("PATH", String.valueOf(folder));
                             Date currentTime = Calendar.getInstance().getTime();
-                            String pdfName = "LaporanDriverTransaksiTerbanyak_"+finalTemp+"_"+finalYearSelected+".pdf";
+                            String pdfName = "LaporanDriverTransaksiTerbanyak_"+finalTemp+"_"+finalYearSelected+currentTime.getTime()+".pdf";
                             File pdfFile = new File(folder.getAbsolutePath(), pdfName);
 
                             OutputStream outputStream = null;
@@ -730,7 +730,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                             }
                             Log.d("PATH", String.valueOf(folder));
                             Date currentTime = Calendar.getInstance().getTime();
-                            String pdfName = "LaporanPerformaDriver_"+finalTemp+"_"+finalYearSelected+".pdf";
+                            String pdfName = "LaporanPerformaDriver_"+finalTemp+"_"+finalYearSelected+currentTime.getTime()+".pdf";
                             File pdfFile = new File(folder.getAbsolutePath(), pdfName);
 
                             OutputStream outputStream = null;
@@ -911,7 +911,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                             }
                             Log.d("PATH", String.valueOf(folder));
                             Date currentTime = Calendar.getInstance().getTime();
-                            String pdfName = "LaporanCustomerTransaksiTerbanyak_"+finalTemp+"_"+finalYearSelected+".pdf";
+                            String pdfName = "LaporanCustomerTransaksiTerbanyak_"+finalTemp+"_"+finalYearSelected+currentTime.getTime()+".pdf";
                             File pdfFile = new File(folder.getAbsolutePath(), pdfName);
 
                             OutputStream outputStream = null;
