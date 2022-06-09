@@ -423,6 +423,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#24549c"
                 android:textColor="@color/white"
+                android:layout_marginBottom="10dp"
                 android:text="Close"
                 app:cornerRadius="10dp"
                 android:layout_gravity="center_horizontal"

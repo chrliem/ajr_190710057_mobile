@@ -103,7 +103,7 @@ public class ProfileDriverActivity extends AppCompatActivity {
         driverPreferences = new DriverPreferences(this);
         driver = driverPreferences.getDriverLogin();
 
-        String urlImage = "http://192.168.100.7:8000/storage/foto_driver/"+driver.getFotoDriver();
+        String urlImage = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_driver/"+driver.getFotoDriver()+"/";
         Glide.with(ProfileDriverActivity.this)
                 .load(urlImage)
                 .apply(new RequestOptions().override(800, 600))
@@ -131,7 +131,7 @@ public class ProfileDriverActivity extends AppCompatActivity {
             cvStatus.setBackgroundColor(Color.parseColor("#20B2AA"));
         }
         //Tampil rerata Driver
-        StringRequest stringRequest = new StringRequest(GET, DriverApi.GET_AVERAGE+driverPreferences.getDriverLogin().getIdDriver()+"/average", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(GET, DriverApi.GET_AVERAGE+driverPreferences.getDriverLogin().getIdDriver()+"/average/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
@@ -265,7 +265,7 @@ public class ProfileDriverActivity extends AppCompatActivity {
                                 );
 
                                 StringRequest stringRequest = new StringRequest(POST,
-                                        DriverApi.UPDATE_URL+driver.getIdDriver()+"/update", new Response.Listener<String>() {
+                                        DriverApi.UPDATE_URL+driver.getIdDriver()+"/update/", new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
                                         Gson gson = new Gson();
@@ -398,7 +398,7 @@ public class ProfileDriverActivity extends AppCompatActivity {
                                     driver.getAccessToken()
                             );
                             StringRequest stringRequest = new StringRequest(POST,
-                                    DriverApi.UPDATE_STATUS+driver.getIdDriver()+"/update-status", new Response.Listener<String>() {
+                                    DriverApi.UPDATE_STATUS+driver.getIdDriver()+"/update-status/", new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     Gson gson = new Gson();
@@ -478,7 +478,7 @@ public class ProfileDriverActivity extends AppCompatActivity {
                                     driver.getAccessToken()
                             );
                             StringRequest stringRequest = new StringRequest(POST,
-                                    DriverApi.UPDATE_STATUS+driver.getIdDriver()+"/update-status", new Response.Listener<String>() {
+                                    DriverApi.UPDATE_STATUS+driver.getIdDriver()+"/update-status/", new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     Gson gson = new Gson();

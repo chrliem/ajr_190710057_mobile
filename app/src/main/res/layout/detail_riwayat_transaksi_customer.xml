@@ -496,6 +496,7 @@
             android:id="@+id/btnCloseDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#24549c"
             android:textColor="@color/white"
             android:text="Close"

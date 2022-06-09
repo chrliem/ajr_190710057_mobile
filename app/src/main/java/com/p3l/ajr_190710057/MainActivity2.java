@@ -173,7 +173,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                 }else if(finalYearSelected.equals("")) {
                     Toast.makeText(MainActivity2.this, "Silakan pilih tahun terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/penyewaan-mobil", new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/penyewaan-mobil/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Gson gson = new Gson();
@@ -355,7 +355,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                 }else if(finalYearSelected.equals("")) {
                     Toast.makeText(MainActivity2.this, "Silakan pilih tahun terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/detail-transaksi", new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/detail-transaksi/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Gson gson = new Gson();
@@ -540,7 +540,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                 }else if(finalYearSelected.equals("")) {
                     Toast.makeText(MainActivity2.this, "Silakan pilih tahun terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-driver", new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-driver/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Gson gson = new Gson();
@@ -716,7 +716,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                 }else if(finalYearSelected.equals("")) {
                     Toast.makeText(MainActivity2.this, "Silakan pilih tahun terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-average-rating", new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-average-rating/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Gson gson = new Gson();
@@ -897,7 +897,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
                 }else if(finalYearSelected.equals("")) {
                     Toast.makeText(MainActivity2.this, "Silakan pilih tahun terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-customer", new Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(GET, LaporanApi.GET_LAPORAN+finalMonthSelected+"/"+finalYearSelected+"/top-customer/", new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Gson gson = new Gson();

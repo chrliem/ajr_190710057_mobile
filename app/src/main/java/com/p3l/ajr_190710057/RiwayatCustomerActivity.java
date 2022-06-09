@@ -70,7 +70,7 @@ public class RiwayatCustomerActivity extends AppCompatActivity {
     }
 
     private void getAllTransaksi(){
-        StringRequest stringRequest = new StringRequest(GET, RiwayatCustomerApi.GET_ALL_URL+customerPreferences.getCustomerLogin().getIdCustomer(), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(GET, RiwayatCustomerApi.GET_ALL_URL+customerPreferences.getCustomerLogin().getIdCustomer()+"/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();

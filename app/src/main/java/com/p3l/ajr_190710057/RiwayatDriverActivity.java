@@ -73,7 +73,7 @@ public class RiwayatDriverActivity extends AppCompatActivity {
     }
 
     private void getAllTransaksi(){
-        StringRequest stringRequest = new StringRequest(GET, RiwayatDriverApi.GET_ALL_URL+driverPreferences.getDriverLogin().getIdDriver()+"/history", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(GET, RiwayatDriverApi.GET_ALL_URL+driverPreferences.getDriverLogin().getIdDriver()+"/history/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();

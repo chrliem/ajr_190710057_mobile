@@ -56,7 +56,7 @@ public class MobilAdapter extends RecyclerView.Adapter<MobilAdapter.ViewHolder> 
         holder.tvFasilitas.setText(mobil.getFasilitasMobil());
         holder.tvTarifHarianMobil.setText("Rp "+String.valueOf(mobil.getTarifMobilHarian()+"/Hari"));
         holder.tvKapasitasPenumpang.setText(String.valueOf(mobil.getKapasitasPenumpang()+" Orang"));
-        String urlImage = "http://192.168.100.7:8000/storage/foto_mobil/"+mobil.getFotoMobil();
+        String urlImage = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_mobil/"+mobil.getFotoMobil()+"/";
         Glide.with(context)
                 .load(urlImage)
                 .into(holder.ivFotoMobil);

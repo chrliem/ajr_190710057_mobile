@@ -209,7 +209,7 @@ public class ProfileCustomerActivity extends AppCompatActivity {
                                         customerPreferences.getCustomerLogin().getAccess_token()
                                 );
                                 StringRequest stringRequest = new StringRequest(POST,
-                                        CustomerApi.UPDATE_URL+customer.getIdCustomer(), new Response.Listener<String>() {
+                                        CustomerApi.UPDATE_URL+customer.getIdCustomer()+"/", new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
                                         Gson gson = new Gson();

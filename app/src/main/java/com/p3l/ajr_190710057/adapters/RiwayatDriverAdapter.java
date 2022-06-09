@@ -93,7 +93,7 @@ public class RiwayatDriverAdapter extends RecyclerView.Adapter<RiwayatDriverAdap
 
                 tvNoPlat.setText(riwayatDriver.getNoPlat());
                 tvNamaMobil.setText(riwayatDriver.getNamaMobil());
-                String urlImage = "http://192.168.100.7:8000/storage/foto_mobil/"+riwayatDriver.getFotoMobil();
+                String urlImage = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_mobil/"+riwayatDriver.getFotoMobil()+"/";
                 Glide.with(context)
                         .load(urlImage)
                         .apply(new RequestOptions().override(600, 200))
@@ -104,7 +104,7 @@ public class RiwayatDriverAdapter extends RecyclerView.Adapter<RiwayatDriverAdap
                 tvIdDriver.setText(riwayatDriver.getIdDriver());
                 tvNamaDriver.setText(riwayatDriver.getNamaDriver());
                 tvTarifDriverHarian.setText("Rp "+String.valueOf(riwayatDriver.getTarifDriverHarian())+"/Hari");
-                String urlImage1 = "http://192.168.100.7:8000/storage/foto_driver/"+riwayatDriver.getFotoDriver();
+                String urlImage1 = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_driver/"+riwayatDriver.getFotoDriver()+"/";
                 Glide.with(context)
                         .load(urlImage1)
                         .apply(new RequestOptions().override(600, 200))

@@ -63,7 +63,7 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 TextView tvNoTransaksiDetail, tvTipeSewaDetail, tvNamaMobil, tvNamaDriver, tvTarifMobilHarian, tvtarifDriverHarian,
                         tvTglTransaksiDetail, tvTglMulaiSewa, tvTglSelesaiSewa, tvTglPengembalian, tvNamaPegawai, tvKodePromo, tvPotonganPromo,
                         tvMetodePembayaran, tvTotalBiayaMobil, tvTotalBiayaDriver, tvTotalBiayaEkstensi, tvTotalPembayaran, tvStatusPembayaran, tvStatusTransaksi,tvDurasiSewa,
-                        txtRatingAJR, txtRatingDriver, txtRating, tvIdDriver, tvNoPlat;
+                        txtRatingAJR, txtRatingDriver, txtRating, tvIdDriver, tvNoPlat, txtBuktiPembayaran;
                 RatingBar rtRatingAJR, rtRatingDriver;
                 MaterialButton btnCloseDetail;
                 ImageView ivFotoMobil, ivFotoDriver, ivBuktiPembayaran;
@@ -100,11 +100,12 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 tvNoPlat = newLayout.findViewById(R.id.tv_no_plat_mobil);
                 tvIdDriver = newLayout.findViewById(R.id.tv_no_driver);
                 ivBuktiPembayaran = newLayout.findViewById(R.id.iv_bukti_pembayaran);
+                txtBuktiPembayaran = newLayout.findViewById(R.id.txt_bukti_pembayaran);
 
                 tvNoTransaksiDetail.setText(riwayatCustomer.getNoTransaksi());
                 if(riwayatCustomer.getNamaDriver()==null){
                     tvTipeSewaDetail.setText("Sewa Mobil Tanpa Driver");
-                    String urlImage = "http://192.168.100.7:8000/storage/foto_mobil/"+riwayatCustomer.getFotoMobil();
+                    String urlImage = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_mobil/"+riwayatCustomer.getFotoMobil()+"/";
                     Glide.with(context)
                             .load(urlImage)
                             .apply(new RequestOptions().override(600, 200))
@@ -130,7 +131,7 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                     txtRatingDriver.setVisibility(View.GONE);
                 }else{
                     tvTipeSewaDetail.setText("Sewa Mobil dengan Driver");
-                    String urlImage = "http://192.168.100.7:8000/storage/foto_mobil/"+riwayatCustomer.getFotoMobil();
+                    String urlImage = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_mobil/"+riwayatCustomer.getFotoMobil()+"/";
                     Glide.with(context)
                             .load(urlImage)
                             .apply(new RequestOptions().override(600, 200))
@@ -139,7 +140,7 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                     tvTarifMobilHarian.setText("Rp "+String.valueOf(riwayatCustomer.getTarifMobilHarian())+"/Hari");
                     tvTotalBiayaMobil.setText("Rp"+String.valueOf(riwayatCustomer.getTotalBiayaMobil()));
                     tvNoPlat.setText(riwayatCustomer.getNoPlat());
-                    String urlImage1 = "http://192.168.100.7:8000/storage/foto_driver/"+riwayatCustomer.getFotoDriver();
+                    String urlImage1 = "https://atmajogjarental.christiandsetiawan.xyz/storage/foto_driver/"+riwayatCustomer.getFotoDriver()+"/";
                     Glide.with(context)
                             .load(urlImage1)
                             .apply(new RequestOptions().override(600, 200))
@@ -184,8 +185,9 @@ public class RiwayatCustomerAdapter extends RecyclerView.Adapter<RiwayatCustomer
                 tvStatusTransaksi.setText(riwayatCustomer.getStatusTransaksi());
                 if(riwayatCustomer.getBuktiPembayaran()==null){
                     ivBuktiPembayaran.setVisibility(View.GONE);
+                    txtBuktiPembayaran.setVisibility(View.GONE);
                 }else{
-                    String urlImage1 = "http://192.168.100.7:8000/storage/bukti_pembayaran/"+riwayatCustomer.getBuktiPembayaran();
+                    String urlImage1 = "https://atmajogjarental.christiandsetiawan.xyz/storage/bukti_pembayaran/"+riwayatCustomer.getBuktiPembayaran()+"/";
                     Glide.with(context)
                             .load(urlImage1)
                             .apply(new RequestOptions().override(1280, 720))
